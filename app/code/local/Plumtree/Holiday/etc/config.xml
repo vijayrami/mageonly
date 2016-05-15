@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plumtree_Holiday extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Plumtree
+ * @package        Plumtree_Holiday
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Plumtree_Holiday>
+            <version>1.1.0</version>
+        </Plumtree_Holiday>
+    </modules>
+    <global>
+        <resources>
+            <plumtree_holiday_setup>
+                <setup>
+                    <module>Plumtree_Holiday</module>
+                    <class>Plumtree_Holiday_Model_Resource_Setup</class>
+                </setup>
+            </plumtree_holiday_setup>
+        </resources>
+        <blocks>
+            <plumtree_holiday>
+                <class>Plumtree_Holiday_Block</class>
+            </plumtree_holiday>
+        </blocks>
+        <helpers>
+            <plumtree_holiday>
+                <class>Plumtree_Holiday_Helper</class>
+            </plumtree_holiday>
+        </helpers>
+        <models>
+            <plumtree_holiday>
+                <class>Plumtree_Holiday_Model</class>
+                <resourceModel>plumtree_holiday_resource</resourceModel>
+            </plumtree_holiday>
+            <plumtree_holiday_resource>
+                <class>Plumtree_Holiday_Model_Resource</class>
+                <entities>
+                    <holiday>
+                        <table>plumtree_holiday_holiday</table>
+                    </holiday>
+                    <holiday_store>
+                        <table>plumtree_holiday_holiday_store</table>
+                    </holiday_store>
+                </entities>
+            </plumtree_holiday_resource>
+        </models>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <plumtree_holiday>
+                    <file>plumtree_holiday.xml</file>
+                </plumtree_holiday>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Plumtree_Holiday>
+                    <files>
+                        <default>Plumtree_Holiday.csv</default>
+                    </files>
+                </Plumtree_Holiday>
+            </modules>
+        </translate>
+        <global_search>
+            <holiday>
+                <class>plumtree_holiday/adminhtml_search_holiday</class>
+                <acl>plumtree_holiday</acl>
+            </holiday>
+        </global_search>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Plumtree_Holiday before="Mage_Adminhtml">Plumtree_Holiday_Adminhtml</Plumtree_Holiday>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <!--<frontend>
+        <routers>
+            <plumtree_holiday>
+                <use>standard</use>
+                <args>
+                    <module>Plumtree_Holiday</module>
+                    <frontName>plumtree_holiday</frontName>
+                </args>
+            </plumtree_holiday>
+        </routers>
+        <layout>
+            <updates>
+                <plumtree_holiday>
+                    <file>plumtree_holiday.xml</file>
+                </plumtree_holiday>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Plumtree_Holiday>
+                    <files>
+                        <default>Plumtree_Holiday.csv</default>
+                    </files>
+                </Plumtree_Holiday>
+            </modules>
+        </translate>
+ </frontend>-->
+    <default>
+        <plumtree_holiday>
+            <holiday>
+                <breadcrumbs>1</breadcrumbs>
+            </holiday>
+        </plumtree_holiday>
+    </default>
+</config>
