@@ -1,0 +1,197 @@
+License type: single
+Domains info:
+www.cargocosmetics.com ;
+cargocosmetics.com ;
+127.0.0.1 ;
+localhost ;
+
+
+Files info:
+app/
+|-- code
+|   `-- community
+|       `-- SMDesign
+|           |-- Colorswatch
+|           |   |-- Block
+|           |   |   `-- Adminhtml
+|           |   |       |-- Abstract.php
+|           |   |       |-- Attribute
+|           |   |       |   |-- Abstract.php
+|           |   |       |   |-- Accordion
+|           |   |       |   |   |-- Content.php
+|           |   |       |   |   |-- Tabs
+|           |   |       |   |   |   `-- Content.php
+|           |   |       |   |   `-- Tabs.php
+|           |   |       |   `-- Base.php
+|           |   |       |-- Header.php
+|           |   |       `-- Welcome.php
+|           |   |-- Helper
+|           |   |   |-- Data.php
+|           |   |   |-- Image.php
+|           |   |   `-- Images.php
+|           |   |-- Model
+|           |   |   |-- Attribute
+|           |   |   |   `-- Settings.php
+|           |   |   |-- Attribute.php
+|           |   |   |-- LICENSE_SMD_ColorSwatch.txt
+|           |   |   |-- Mysql4
+|           |   |   |   |-- Attribute
+|           |   |   |   |   |-- Settings
+|           |   |   |   |   |   `-- Collection.php
+|           |   |   |   |   `-- Settings.php
+|           |   |   |   `-- Swatch
+|           |   |   |       |-- Images
+|           |   |   |       |   `-- Collection.php
+|           |   |   |       `-- Images.php
+|           |   |   |-- Product
+|           |   |   |   `-- Swatch.php
+|           |   |   |-- Resource
+|           |   |   |   `-- Product
+|           |   |   |       `-- Type
+|           |   |   |           `-- Configurable
+|           |   |   |               `-- Attribute
+|           |   |   |                   `-- Collection.php
+|           |   |   |-- Session.php
+|           |   |   |-- Source
+|           |   |   |   `-- Popupinfo.php
+|           |   |   `-- Swatch
+|           |   |       |-- Image.php
+|           |   |       `-- Images.php
+|           |   |-- controllers
+|           |   |   |-- Adminhtml
+|           |   |   |   `-- ColorswatchController.php
+|           |   |   `-- GetController.php
+|           |   |-- etc
+|           |   |   |-- adminhtml.xml
+|           |   |   |-- config.xml
+|           |   |   `-- system.xml
+|           |   `-- sql
+|           |       `-- colorswatch_setup
+|           |           |-- mysql4-install-4.0.1.php
+|           |           `-- mysql4-upgrade-4.0.1-4.5.0.php
+|           |-- ColorswatchProductView
+|           |   |-- Block
+|           |   |   `-- Product
+|           |   |       `-- View
+|           |   |           |-- Media.php
+|           |   |           |-- Selection
+|           |   |           |   `-- Swatch.php
+|           |   |           |-- Selection.php
+|           |   |           `-- Type
+|           |   |               `-- Configurable.php
+|           |   |-- Helper
+|           |   |   |-- Data.php
+|           |   |   |-- Image.php
+|           |   |   `-- Product.php
+|           |   |-- Model
+|           |   |   |-- Observer.php
+|           |   |   `-- System
+|           |   |       `-- Config
+|           |   |           `-- Source
+|           |   |               `-- Swatches
+|           |   |                   `-- Load
+|           |   |                       `-- Options.php
+|           |   |-- controllers
+|           |   |   `-- GetController.php
+|           |   `-- etc
+|           |       |-- config.xml
+|           |       `-- system.xml
+|           `-- SMDZoom
+|               |-- Block
+|               |   `-- Product
+|               |       `-- View
+|               |           `-- Media.php
+|               |-- Helper
+|               |   `-- Data.php
+|               |-- Model
+|               |   |-- Hidezoomeffect.php
+|               |   |-- Imagetype.php
+|               |   |-- Showzoomeffect.php
+|               |   `-- Zoomtype.php
+|               |-- etc
+|               |   |-- adminhtml.xml
+|               |   |-- config.xml
+|               |   `-- system.xml
+|               `-- sql
+|                   `-- smdzoom_setup
+|                       `-- mysql4-install-2.1.php
+|-- design
+|   |-- adminhtml
+|   |   `-- default
+|   |       `-- default
+|   |           |-- layout
+|   |           |   `-- colorswatch.xml
+|   |           `-- template
+|   |               `-- colorswatch
+|   |                   |-- attribute
+|   |                   |   |-- accordion
+|   |                   |   |   |-- content.phtml
+|   |                   |   |   |-- tabs
+|   |                   |   |   |   |-- image-active.phtml
+|   |                   |   |   |   |-- image-disabled.phtml
+|   |                   |   |   |   `-- image-hover.phtml
+|   |                   |   |   `-- tabs.phtml
+|   |                   |   |-- base.phtml
+|   |                   |   `-- js.phtml
+|   |                   |-- header.phtml
+|   |                   `-- welcome.phtml
+|   `-- frontend
+|       `-- default
+|           `-- default
+|               |-- layout
+|               |   |-- colorswatchproductview.xml
+|               |   `-- smdzoom.xml
+|               `-- template
+|                   |-- colorswatch
+|                   |   |-- catalog
+|                   |   |   `-- product
+|                   |   |       `-- view
+|                   |   |           `-- type
+|                   |   |               `-- options
+|                   |   |                   `-- configurable.phtml
+|                   |   `-- product
+|                   |       `-- view
+|                   |           |-- selection
+|                   |           |   `-- swatch.phtml
+|                   |           `-- selection.phtml
+|                   `-- smdzoom
+|                       `-- media.phtml
+`-- etc
+    `-- modules
+        |-- SMDesign_Colorswatch.xml
+        |-- SMDesign_ColorswatchProductView.xml
+        `-- SMDesign_SMDZoom.xml
+skin/
+|-- adminhtml
+|   `-- default
+|       `-- default
+|           |-- colorswatch.css
+|           `-- images
+|               |-- advancedBt.png
+|               |-- button.jpg
+|               `-- no-image.jpg
+`-- frontend
+    `-- default
+        `-- default
+            |-- css
+            |   `-- colorswatch.css
+            `-- images
+                |-- colorswatch
+                |   |-- colorswatch_loading.gif
+                |   `-- selection.png
+                `-- smdzoom
+                    `-- smdzoom_loading.gif
+js/
+|-- colorswatch
+|   |-- adminhtml
+|   |   `-- grid.js
+|   |-- colorswatch-product-config.js
+|   `-- colorswatch.js
+`-- smdzoom
+    |-- smdzoom-preloader.js
+    `-- smdzoom.js
+doc/
+|-- smdesign-colorswatch-tutorial-document.pdf
+`-- smdesign-zoom-tutorial-document.pdf
+
+95 directories, 87 files
