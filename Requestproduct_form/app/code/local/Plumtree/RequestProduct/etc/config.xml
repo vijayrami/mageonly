@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Plumtree_RequestProduct>
+            <version>0.1.0</version>
+        </Plumtree_RequestProduct>
+    </modules>
+    
+	<global>
+		<models>
+            <requestproduct>
+                <class>Plumtree_RequestProduct_Model</class>
+            </requestproduct>
+        </models>
+		<helpers>
+            <requestproduct>
+                <class>Plumtree_RequestProduct_Helper</class>
+            </requestproduct>
+        </helpers>
+        <template>
+            <email>
+                <requestproduct_email_subscription_success_email_template translate="label" module="requestproduct">
+                    <label>Success Product Template</label>
+                    <file>requestproduct/success_product.html</file>
+                    <type>html</type>
+                </requestproduct_email_subscription_success_email_template>
+                <requestproduct_email_subscription_confirm_email_template translate="label" module="requestproduct">
+                    <label>Request Product Template</label>
+                    <file>requestproduct/request_product.html</file>
+                    <type>html</type>
+                </requestproduct_email_subscription_confirm_email_template>
+            </email>
+        </template>
+	</global>
+    <frontend>
+        <routers>
+            <requestproduct>
+                <use>standard</use>
+                <args>
+                    <module>Plumtree_RequestProduct</module>
+                    <frontName>request-a-product</frontName>
+                </args>
+            </requestproduct>
+     	</routers>
+        
+		 <layout>
+            <updates>
+                <requestproduct>
+                    <file>requestproduct.xml</file>
+                </requestproduct>
+            </updates>
+        </layout>	
+        		 	
+    </frontend>
+    <default>
+        <requestproduct>
+            <request>
+                <enabled>1</enabled>
+            </request>
+            <subscription>
+            	<confirm_email_template>1</confirm_email_template>
+            	<success_email_template>2</success_email_template>
+            	<success_email_identity>support</success_email_identity>
+            	<confirm_email_identity>sales</confirm_email_identity>
+            </subscription>
+        </requestproduct>
+    </default>
+</config>
