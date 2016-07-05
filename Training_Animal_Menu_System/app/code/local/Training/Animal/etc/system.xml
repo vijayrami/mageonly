@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <training translate="label" module="training_animal">
+            <label>Training</label>
+            <sort_order>2000</sort_order>
+        </training>
+    </tabs>
+    <sections>
+        <training_animal translate="label" module="training_animal">
+            <class>separator-top</class>
+            <label>Animal</label>
+            <tab>training</tab><!-- check node after tabs -->
+            <sort_order>130</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General Animal Settings</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <recommendation translate="label">
+                            <label>Recommendation</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                				<show_recommendation>1</show_recommendation>
+              				</depends>
+		              		<comment><![CDATA[<strong>This</strong> is a comment]]></comment>
+		                </recommendation>
+		                <show_recommendation translate="label">
+			              <label>Display recommendation</label>
+			              <frontend_type>select</frontend_type>
+			              <!-- Check node just after models in config.xml -->
+			              <source_model>training_animal/system_config_source_show</source_model>
+			              <sort_order>20</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			              <tooltip>Wow! More JS PLS!</tooltip>
+			            </show_recommendation>
+                    </fields>   
+                </general>
+                </groups>
+            </training_animal>
+    </sections>
+</config>
