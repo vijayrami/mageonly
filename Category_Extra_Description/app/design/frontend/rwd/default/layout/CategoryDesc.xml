@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<catalog_category_default>
+		<reference name="content">
+			<block name="category_extra_desc" type="catalog/category_view" after="category.products" template="catalog/category/extra-desc.phtml" />
+		</reference>
+	</catalog_category_default>
+
+	<catalog_category_layered>
+		<reference name="content">
+			<block name="category_extra_desc" type="catalog/category_view" after="category.products" template="catalog/category/extra-desc.phtml" />
+		</reference>
+	</catalog_category_layered>
+</layout>
