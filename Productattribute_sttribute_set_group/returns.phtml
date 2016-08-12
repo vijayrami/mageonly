@@ -1,0 +1,17 @@
+<?php 
+
+$_product = Mage::registry('current_product');
+//$attributeValue = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeInsalled();
+$attributeValue = Mage::getModel('catalog/product')->load($_product->getId())->getAttributeText('vijay_insalled_attribute');
+//$_product->getResource()->getAttribute('attribute_insalled')->getFrontend()->getValue($_product);
+if (is_array($attributeValue)) {
+  			$output = '<ul><li>';
+        	$output .= implode('</li><li>', $attributeValue);
+        	$output .= '</li></ul>';
+        	echo $output;
+  		} else {
+  			echo $attributeValue;
+  		}
+
+
+?>
