@@ -2,7 +2,7 @@
 <config>
 	<modules>
 		<Mycompany_CategoryDescription>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
 		</Mycompany_CategoryDescription>
 	</modules>
 	<frontend>
