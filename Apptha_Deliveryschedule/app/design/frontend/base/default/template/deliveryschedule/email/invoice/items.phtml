@@ -1,0 +1,69 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Deliveryschedule
+ * @version     0.1.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ * */
+?>
+<?php $_invoice = $this->getInvoice() ?>
+<?php $_order   = $this->getOrder() ?>
+
+<?php  if (Mage::getStoreConfig('deliveryschedule/general/delivery_schedule_enabled')==1){ 
+    $getInvoiceItems = $_order->getShippingDeliverySchedule();
+    if($getInvoiceItems && $getInvoiceItems != "") { 
+    ?>
+<table cellspacing="0" cellpadding="0" border="0" width="100%" style="border:1px solid #EAEAEA;">
+    <thead>
+        <tr>
+            <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><strong><?php echo $this->__('Delivery Schedule Information'); ?></strong></th>
+        </tr>
+    </thead><tbody> <tr> <td colspan="4" align="left" style="padding:3px 9px">
+            <?php 
+            $deliveryDateItem = $_order->getShippingDeliveryDate();
+            $deliveryTypeItem = $_order->getShippingDeliverySchedule();
+            $deliveryTimeItem = $_order->getShippingDeliveryTime();
+            echo "<strong style='display:block;font-weight:bold;'>".$this->__('Shipping Delivery Schedule')." :- </strong>".$_order->getShippingDeliverySchedule();
+            if($deliveryDateItem != "")  { 
+            echo "</br><strong style='display:block;font-weight:bold;'>".$this->__('Shipping Delivery Date')." :- </strong></br>".date("M d Y",strtotime($deliveryDateItem))." ".$deliveryTimeItem;
+            }
+            else  { 
+                echo "N/A";
+            } ?>
+            <br /><strong style='display:block;font-weight:bold;'><?php echo $this->__('Comments : '); ?></strong> 
+            <?php 
+            if (Mage::getStoreConfig ( 'deliveryschedule/general/delivery_comment_enabled' ) == 1) {
+            $commentsItem = $_order->getShippingDeliveryComments(); 
+            if($commentsItem !="")   {
+                echo $commentsItem;
+                }
+                else   {
+                echo "N/A";
+                } 
+                } ?>
+            </td> </tr> </tbody></table>
+<?php } 
+}
+?>

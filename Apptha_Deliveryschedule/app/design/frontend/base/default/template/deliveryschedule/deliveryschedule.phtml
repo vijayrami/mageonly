@@ -1,0 +1,233 @@
+<?php 
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Deliveryschedule
+ * @version     0.1.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ * */
+?>
+<dd class="delivery-schedule">
+<?php 
+/**
+ * Get the current store's id
+ */ 
+$storeId = Mage::app()->getStore()->getStoreId();
+/**
+ * Get store currency symbol
+ */
+$currencySymbol = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+/**
+ * Get delivery schedule types options
+ */
+$deliveryTypesModel = Mage::helper('deliveryschedule')->getScheduleTypes($storeId);
+$typesDropDown ="";
+foreach($deliveryTypesModel as $row) {
+    $title = $row->getName();
+    $id = $row->getId();
+    if(!empty(Mage::helper('deliveryschedule')->getScheduleData($id)->getData())){ 
+    $typesDropDown .= "<option id='$id' value='$id'>".$this->__($title)."</option>";
+    }
+}
+/**
+ * Get current date
+ */
+$currentDate =  Mage::getModel('core/date')->date('Y-m-d');
+/**
+ * Get current day
+ */
+$currentDay =  Mage::getModel('core/date')->date('D');
+?>
+<ul>
+<li><div class="input-box">
+<?php foreach($deliveryTypesModel as $types) { 
+        $scheduleTypeId = $types->getId();
+?>
+<input type="hidden" id="current_slot_slide" name="current_slot_slide" value="<?php echo $scheduleTypeId; ?>" class="input-text">
+<?php break; 
+} ?>
+</div>
+</li>
+</ul>
+ <?php if(!empty($typesDropDown))  { ?>
+        <label for="" class="time-slot-label"><?php echo $this->__('SCHEDULE TYPES:');?></label>
+        <select name="delivery_schedule_types" class="clearfix shipping-delivery-select" onchange="selectScheduleType(this.value);">
+         <?php   echo $typesDropDown; 
+         }?>
+        </select>
+<div class="delivery" >
+<div class="delivery_schedule_title">
+<h6><a id="daysshow-previous" class="daysshow-previous-class" href="#previous" style="display: inline;"><?php echo $this->__('Previous 7 days');?></a>
+<a id="daysshow-next" class="daysshow-next-class" style="display: inline;"><?php echo $this->__('Next 7 days');?></a></h6>
+</div>
+<?php 
+$increment = 0;
+foreach($deliveryTypesModel as $types) { 
+    $scheduleTypeId = $types->getId();
+    $monday = $types->getMonday();
+    $tuesday = $types->getTuesday();
+    $wednesday = $types->getWednesday();
+    $thursday = $types->getThursday();
+    $friday = $types->getFriday();
+    $saturday = $types->getSaturday();
+    $sunday = $types->getSunday();
+    /**
+     * Get delivery schedule time slot based on schedule type id
+     */
+$deliveryScheduleModel = Mage::helper('deliveryschedule')->getScheduleData($scheduleTypeId);
+?>
+<div class="delivery_schedule_time" id="slidediv_<?php echo $scheduleTypeId;?>" <?php if($increment!=0){ echo "style='display:none;'";}?>>
+<div class="delivery_time">
+<h6 class="first_column_header"><strong><?php echo $this->__('Time Slots (24 Hrs format)');?></strong></h6>
+<?php 
+foreach($deliveryScheduleModel as $scheduleTime){
+    $timeSlotTitle = $scheduleTime->getTimeSlot();
+    $timeSlotId = $scheduleTime->getId();
+?>
+<p><?php echo $timeSlotTitle;?></p>
+<?php } ?>
+</div>
+<div class="delivery_schedule_dates">
+<div id="slideshow-area" class="slideshow-area-class">
+<div id="slideshow-scroller" class="slideshow-scroller-class" scrollleft="0">
+<div id="slideshow-holder" class="slideshow-holder-class" style="width: 2000px;">
+<?php for($i=1;$i<=4;$i++) {?>
+<div class="slideshow-content contentslider<?php echo $scheduleTypeId; ?>">
+<div class="delivery_schedule_dates_top delivery-schedule-head">
+<ul>
+<?php 
+$weekDays = 7;
+$end = $weekDays*$i;
+$start = ($end-$weekDays)+1;
+for($days=$start;$days<=$end;$days++){
+$currentDate = new Zend_Date(Mage::getModel('core/date')->timestamp());
+$currentDate->addDay($days);
+echo "<li";
+if($days%2==0){
+echo ' class="oddrow"';
+}
+echo ">(".date('D', strtotime($currentDate)).")<span>".date('d/m', strtotime($currentDate))."</span></li>";
+
+}
+?>
+<div class="clear"><span></span></div>
+</ul>
+</div>
+    <div class="delivery_schedule_dates_top select_one">
+<?php 
+foreach($deliveryScheduleModel as $scheduleTime){
+    $timeSlotTitle = $scheduleTime->getTitle();
+    $timeSlotId = $scheduleTime->getId();
+    $mondayCost = $scheduleTime->getMondayCost();
+    $tuesdayCost = $scheduleTime->getTuesdayCost();
+    $wednesdayCost = $scheduleTime->getWednesdayCost();
+    $thursdayCost = $scheduleTime->getThursdayCost();
+    $fridayCost = $scheduleTime->getFridayCost();
+    $saturdayCost = $scheduleTime->getSaturdayCost();
+    $sundayCost = $scheduleTime->getSundayCost();
+?>    
+<ul>
+<?php 
+for($prices=$start;$prices<=$end;$prices++) 
+{
+    $currentDate = new Zend_Date(Mage::getModel('core/date')->timestamp());
+    $currentDate->addDay($prices);
+    $currentDay = date('D', strtotime($currentDate));
+    $displayCost ="";
+    $diasbleRow = "false";
+    if($currentDay == 'Mon'){
+$displayCost = $mondayCost;
+if($monday == 2){
+$diasbleRow = "true";
+}
+} else if($currentDay == 'Tue'){
+$displayCost = $tuesdayCost;
+if($tuesday == 2){
+    $diasbleRow = "true";
+}
+} else if($currentDay == 'Wed'){
+$displayCost = $wednesdayCost;
+if($wednesday == 2){
+    $diasbleRow = "true";
+}
+} else if($currentDay == 'Thu'){
+$displayCost = $thursdayCost;
+if($thursday == 2){
+    $diasbleRow = "true";
+}
+} else if($currentDay == 'Fri'){
+$displayCost = $fridayCost;
+if($friday == 2){
+    $diasbleRow = "true";
+}
+} else if($currentDay == 'Sat'){
+$displayCost = $saturdayCost;
+if($saturday == 2){
+    $diasbleRow = "true";
+}
+} else{
+$displayCost = $sundayCost;
+if($sunday == 2){
+    $diasbleRow = "true";
+}
+}
+if($diasbleRow == 'true'){ ?>
+<li class="disablerow">&nbsp;</li>	
+<?php }else{
+    ?>
+    <li class="delivery_schedule_dates_select<?php if($prices%2==0) {
+        echo ' oddrow';
+    }?>">
+    <a href="#select" onclick="selectDdate('<?php echo date('Y-m-d', strtotime($currentDate)); ?>','<?php echo $timeSlotId;?>','<?php echo $displayCost; ?>');jQuery(this).addClass('ddate_day_active');"><?php echo $currencySymbol.$displayCost;?></a>
+    </li>
+<?php 
+}
+}?>
+<div class="clear"><span></span></div>
+</ul>
+<?php } ?>
+</div>
+</div>
+<?php } ?>
+</div>
+</div>
+</div>
+</div>
+<div class="clear"><span></span></div>
+</div>
+<?php $increment++;
+ } ?>
+</div>
+    <ul class="checkout-shipping-schedule">
+    <input type="hidden" id="shipping_delivery_date" name="shipping_delivery_date" class="required-entry"/>
+    <input type="hidden" id="shipping_delivery_time" name="shipping_delivery_time"/>
+    <input type="hidden" id="shipping_delivery_cost" name="shipping_delivery_cost"/>
+    <?php if (Mage::getStoreConfig ( 'deliveryschedule/general/delivery_comment_enabled' ) == 1) { ?>
+    <li>
+        <label for="shipping_arrival_comments"><?php echo $this->__('DELIVERY COMMENTS:');?></label><br/>
+        <textarea cols="65" rows="8" name="shipping_delivery_comments" id="shipping_arrival_comments"></textarea>
+    </li> 
+    <?php } ?> 
+    </ul> 
+</dd>

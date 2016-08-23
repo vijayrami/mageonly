@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Deliveryschedule
+ * @version     0.1.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ * */
+  -->
+<config>
+    <modules>
+        <Apptha_Deliveryschedule>
+            <version>0.1.0</version>
+        </Apptha_Deliveryschedule>
+    </modules>
+    <frontend>
+        <routers>
+            <deliveryschedule>
+                <use>standard</use>
+                <args>
+                    <module>Apptha_Deliveryschedule</module>
+                    <frontName>deliveryschedule</frontName>
+                </args>
+            </deliveryschedule>
+        </routers>
+        <layout>
+            <updates>
+                <deliveryschedule>
+                    <file>deliveryschedule.xml</file>
+                </deliveryschedule>
+            </updates>
+        </layout>
+        <events>
+            <checkout_controller_onepage_save_shipping_method>
+                <observers>
+                    <deliveryschedule_observer>
+                        <type>singleton</type>
+                        <class>deliveryschedule/observer</class>
+                        <method>checkout_controller_onepage_save_shipping_method</method>
+                    </deliveryschedule_observer>
+                </observers>
+            </checkout_controller_onepage_save_shipping_method>
+            <sales_order_save_after>
+                <observers>
+                    <order_set_shippingdeliveryschedule>
+                        <type>model</type>
+                        <class>Apptha_Deliveryschedule_Helper_Data</class>
+                        <method>saveShippingDeliveryScedule</method>
+                    </order_set_shippingdeliveryschedule>
+                </observers>
+            </sales_order_save_after>
+            <paypal_prepare_line_items>
+                <observers>
+                    <paypal_prepare_line_items>
+                     <type>singleton</type>
+                        <class>deliveryschedule/observer</class>
+                        <method>updatePaypalTotal</method>
+                    </paypal_prepare_line_items>
+                </observers>
+            </paypal_prepare_line_items>
+        </events>
+         <translate>
+            <modules>
+                <deliveryschedule>
+                    <files>
+                        <default>Apptha_Deliveryschedule.csv</default>
+                    </files>
+                </deliveryschedule>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <deliveryschedule>
+                <use>admin</use>
+                <args>
+                    <module>Apptha_Deliveryschedule</module>
+                    <frontName>deliveryschedule</frontName>
+                </args>
+            </deliveryschedule>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+             <deliveryschedule module="deliveryschedule">
+                <title>Delivery Schedule</title>
+                <sort_order>71</sort_order>               
+                <children>
+                   <deliveryschedule_types module="deliveryschedule">
+                      <title>Manage Schedule Types</title>
+                      <sort_order>0</sort_order>
+                      <action>deliveryschedule/adminhtml_deliveryscheduletypes</action>
+                   </deliveryschedule_types>
+                   <items module="deliveryschedule">
+                      <title>Manage Delivery Schedule</title>
+                      <sort_order>1</sort_order>
+                      <action>deliveryschedule/adminhtml_deliveryschedule</action>
+                   </items>
+                </children>
+             </deliveryschedule>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <Apptha_Deliveryschedule>
+                            <title>Delivery Schedule Module</title>
+                            <sort_order>10</sort_order>
+                        </Apptha_Deliveryschedule>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <deliveryschedule>
+                                            <title>Delivery Schedule</title>
+                                        </deliveryschedule>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <deliveryschedule>
+                    <file>deliveryschedule.xml</file>
+                </deliveryschedule>
+            </updates>
+        </layout>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_view_info>Apptha_DeliverySchedule_Block_Sales_Order_View_Info</sales_order_view_info>
+                </rewrite>
+            </adminhtml>
+        <events>
+            <sales_order_save_after>
+                <observers>
+                    <order_set_shippingdeliveryschedule>
+                        <type>model</type>
+                        <class>Apptha_Deliveryschedule_Helper_Data</class>
+                        <method>saveShippingDeliveryScheduleAdmin</method>
+                    </order_set_shippingdeliveryschedule>
+                </observers>
+            </sales_order_save_after>
+        </events>
+    </adminhtml>
+    <global>
+        <models>
+            <deliveryschedule>
+                <class>Apptha_Deliveryschedule_Model</class>
+                <resourceModel>deliveryschedule_mysql4</resourceModel>
+            </deliveryschedule>
+            <deliveryschedule_mysql4>
+                <class>Apptha_Deliveryschedule_Model_Mysql4</class>
+                <entities>
+                    <deliveryschedule>
+                        <table>deliveryschedule</table>
+                    </deliveryschedule>
+                    <deliveryscheduletypes>
+                        <table>deliveryschedule_types</table>
+                    </deliveryscheduletypes>
+                </entities>
+            </deliveryschedule_mysql4>
+        </models>
+        <resources>
+            <deliveryschedule_setup>
+                <setup>
+                    <module>Apptha_Deliveryschedule</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </deliveryschedule_setup>
+            <deliveryschedule_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </deliveryschedule_write>
+            <deliveryschedule_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </deliveryschedule_read>
+        </resources>
+        <blocks>
+            <deliveryschedule>
+                <class>Apptha_Deliveryschedule_Block</class>
+            </deliveryschedule>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_totals>Apptha_Deliveryschedule_Block_Adminhtml_Sales_Order</sales_order_totals> 
+                    <sales_order_invoice_totals>Apptha_Deliveryschedule_Block_Adminhtml_Sales_Invoice</sales_order_invoice_totals>
+                </rewrite>
+            </adminhtml>
+                
+            <sales>
+                <rewrite>
+                    <order_totals>Apptha_Deliveryschedule_Block_Sales_Order</order_totals>
+                    <order_invoice_totals>Apptha_Deliveryschedule_Block_Sales_Invoice</order_invoice_totals>
+                </rewrite>
+            </sales>
+        </blocks>
+        <helpers>
+            <deliveryschedule>
+                <class>Apptha_Deliveryschedule_Helper</class>
+            </deliveryschedule>
+        </helpers>
+        <default>
+            <deliveryschedule>
+                <deliveryschedule_general>
+                    <delivery_schedule_enabled>0</delivery_schedule_enabled> 
+                </deliveryschedule_general>
+            </deliveryschedule>
+        </default>
+        <sales>
+            <quote>
+                <totals>
+                    <deliveryschedule>
+                        <class>deliveryschedule/sales_quote_address_total_deliverycost</class>
+                    </deliveryschedule>
+                </totals>
+            </quote>
+          <order_invoice>
+             <totals>
+                 <deliveryschedule>
+                     <class>deliveryschedule/sales_quote_address_invoice_deliverycost</class>
+                     <after>subtotal</after>
+                 </deliveryschedule>
+             </totals>
+         </order_invoice>
+      </sales>
+       <fieldsets>
+            <sales_convert_quote_address>
+                <delivery_cost><to_order>*</to_order></delivery_cost>
+                <base_delivery_cost><to_order>*</to_order></base_delivery_cost>
+            </sales_convert_quote_address>
+        </fieldsets>
+    </global>
+</config>
