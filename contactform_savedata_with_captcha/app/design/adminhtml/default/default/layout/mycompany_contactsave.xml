@@ -1,26 +1,9 @@
 <?xml version="1.0"?>
-<!--
-/**
- * Mycompany_Contactsave extension
- * 
- * NOTICE OF LICENSE
- * 
- * This source file is subject to the MIT License
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/mit-license.php
- * 
- * @category       Mycompany
- * @package        Mycompany_Contactsave
- * @copyright      Copyright (c) 2016
- * @license        http://opensource.org/licenses/mit-license.php MIT License
- */
---> 
 <layout>
     <adminhtml_contactsave_contactdata_index>
         <reference name="menu">
             <action method="setActive">
-                <menupath>mycompany_contactsave/contactdata</menupath>
+                <menupath>customer/contactdata</menupath>
             </action>
         </reference>
         <reference name="content">
