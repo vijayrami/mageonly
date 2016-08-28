@@ -5,15 +5,7 @@ class Mycompany_Contactsave_IndexController extends Mage_Contacts_IndexControlle
     public function postAction()
     {
         $post = $this->getRequest()->getPost();
-        if ( $this->getRequest()->isPost() && $this->getRequest()->getPost('email') ) {
-        	
-        	$name          = $this->getRequest()->getPost('name');
-        	$email         = (string) $this->getRequest()->getPost('email');
-        	$telephone     = $this->getRequest()->getPost('telephone');
-        	$fax           = $this->getRequest()->getPost('fax');
-        	$company_name  = $this->getRequest()->getPost('company_name');
-        	$comment  	   = $this->getRequest()->getPost('comment');
-        	
+        if ( $post ) {
             $translate = Mage::getSingleton('core/translate');
             /* @var $translate Mage_Core_Model_Translate */
             $translate->setTranslateInline(false);
@@ -42,7 +34,30 @@ class Mycompany_Contactsave_IndexController extends Mage_Contacts_IndexControlle
                 if ($error) {
                     throw new Exception();
                 }
-                
+                if ($error == false){
+                	$resource   = Mage::getSingleton('core/resource');
+                	$write      = Mage::getSingleton('core/resource')->getConnection('core_write');
+                	$table      = $resource->getTableName('mycompany_contactsave_contactdata');
+                	
+                	
+                	$name       	= $post['name'];
+                	$email      	= $post['email'];
+                	$telephone  	= $post['telephone'];
+                	$fax    		= $post['fax'];
+                	$company_name   = $post['company_name'];
+                	$comments   	= $post['comment'];
+                	
+                	$query      =  "Insert Into {$table} (customer_name,customer_email,customer_phone,customer_fax,customer_company,customer_comment,status,updated_at,created_at) values (:name,:email,:telephone,:fax,:company_name,:comments,1,NOW(),NOW())";
+                	$binds      =  array(
+                			'name'   		=> $name,
+                			'email'      	=> $email,
+                			'telephone'     => $telephone,
+                			'fax' 			=> $fax,
+                			'company_name' 	=> $company_name,
+                			'comments'  	=> $comments,
+                	);
+                	$write->query($query,$binds);            	
+                }
                 $mailTemplate = Mage::getModel('core/email_template');
                 /* @var $mailTemplate Mage_Core_Model_Email_Template */
                 $mailTemplate->setDesignConfig(array('area' => 'frontend'))
@@ -60,23 +75,9 @@ class Mycompany_Contactsave_IndexController extends Mage_Contacts_IndexControlle
                 }
 
                 $translate->setTranslateInline(true);
-				
-                $dt = date('d-m-Y H:i:s');
-                $contact = Mage::getModel('mycompany_contactsave/contactdata');
-                $contact->setData('customer_name', $name);
-                $contact->setData('customer_email', $email);
-                $contact->setData('customer_phone', $telephone);
-                $contact->setData('customer_fax', $fax);
-                $contact->setData('customer_company', $company_name);
-                $contact->setData('customer_comment', $comment);
-                $contact->setData('status', 1);
-                $contact->setData('updated_at', $dt);
-                $contact->setData('created_at', $dt);
-                $contact->save();
-                
+
                 Mage::getSingleton('customer/session')->addSuccess(Mage::helper('contacts')->__('Your inquiry was submitted and will be responded to as soon as possible. Thank you for contacting us.'));
-                //$this->_redirect('*/*/');
-                $this->_redirectReferer();
+                $this->_redirect('*/*/');
 
                 return;
             } catch (Exception $e) {
