@@ -36,7 +36,7 @@
                     <reference name="head">
                         <action method="addJs"><file>mage/captcha.js</file></action>
                     </reference>
-                    <action method="setFormId"><formId>contacts</formId></action>
+                    <action method="setFormId"><formId>mycompany_mycontact</formId></action>
                     <action method="setImgWidth"><width>230</width></action>
                     <action method="setImgHeight"><width>50</width></action>
                 </block>
