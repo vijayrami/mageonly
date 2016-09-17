@@ -29,6 +29,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
                         </public_key>
                         <private_key translate="label">
                             <label>Secret Key</label>
@@ -38,6 +39,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
                         </private_key>
                         <theme translate="label">
                             <label>reCaptcha Theme</label>
@@ -48,6 +50,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
                         </theme>
                         <lang translate="label">
                             <label>reCaptcha Language</label>
@@ -58,6 +61,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <depends><enabled>1</enabled></depends>
                         </lang>
                     </fields>
                 </mycompany_contactsrecaptcha>

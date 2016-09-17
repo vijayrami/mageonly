@@ -3,7 +3,7 @@
     <contacts_index_index>
         <reference name="content">
             <reference name="contactForm">
-                <action method="setTemplate"><template>contactsrecaptcha/form.phtml</template></action>
+                <action method="setTemplate" ifconfig="contacts/mycompany_contactsrecaptcha/enabled"><template>contactsrecaptcha/form.phtml</template></action>
             </reference>
         </reference>
     </contacts_index_index>
