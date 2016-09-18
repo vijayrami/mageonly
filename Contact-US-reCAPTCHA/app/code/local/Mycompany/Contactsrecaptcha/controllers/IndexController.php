@@ -35,7 +35,7 @@ class Mycompany_Contactsrecaptcha_IndexController extends Mage_Contacts_IndexCon
 
             //get reCaptcha lang name
             $lang = Mage::getStoreConfig(self::XML_PATH_CFC_LANG);
-            if (strlen($lang) == 0 || !in_array($lang, array('en', 'nl', 'fr', 'de', 'pt', 'ru', 'es', 'tr'))) {
+            if (strlen($lang) == 0) {
                 $lang = 'en';
             }
 
