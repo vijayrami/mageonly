@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<customer_account_create>
+		<reference name="customer_form_register">
+			<action method="setTemplate" ifconfig="customer/Mycompany_Customerrecaptcha/customerrecaptcha_enabled">
+				<template>customerrecaptcha/persistent/customer/form/register.phtml</template>
+			</action>
+		</reference>
+	</customer_account_create>
+	<customer_account_login>
+        <reference name="customer_form_login">
+            <action method="setTemplate" ifconfig="customer/Mycompany_Customerrecaptcha/customerrecaptcha_enabled">
+				<template>customerrecaptcha/persistent/customer/form/login.phtml</template>
+			</action>
+        </reference>
+    </customer_account_login>
+    <customer_account_forgotpassword>
+    	<reference name="forgotPassword">
+            <action method="setTemplate" ifconfig="customer/Mycompany_Customerrecaptcha/customerrecaptcha_enabled">
+				<template>customerrecaptcha/customer/form/forgotpassword.phtml</template>
+			</action>
+        </reference>
+ 	</customer_account_forgotpassword>
+    <checkout_onepage_index>
+    	<reference name="checkout.onepage.login">
+            <action method="setTemplate" ifconfig="customer/Mycompany_Customerrecaptcha/customerrecaptcha_enabled">
+				<template>customerrecaptcha/persistent/checkout/onepage/login.phtml</template>
+			</action>
+        </reference>
+        <reference name="checkout.onepage.billing">
+            <action method="setTemplate" ifconfig="customer/Mycompany_Customerrecaptcha/customerrecaptcha_enabled">
+                <template>customerrecaptcha/persistent/checkout/onepage/billing.phtml</template>
+            </action>
+        </reference>        
+	</checkout_onepage_index>
+</layout>

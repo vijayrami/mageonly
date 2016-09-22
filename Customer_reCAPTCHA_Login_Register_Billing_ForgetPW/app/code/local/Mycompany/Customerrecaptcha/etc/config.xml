@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Mycompany_Customerrecaptcha>
+            <version>1.0.0</version>
+        </Mycompany_Customerrecaptcha>
+    </modules>
+
+    <global>
+        <blocks>
+            <customer>
+                <rewrite>
+                    <form_register>Mycompany_Customerrecaptcha_Block_Form_Register</form_register>
+                    <form_login>Mycompany_Customerrecaptcha_Block_Form_Login</form_login>                    					<account_forgotpassword>Mycompany_Customerrecaptcha_Block_Account_Forgotpassword</account_forgotpassword>
+                </rewrite>
+            </customer>
+            <checkout>
+                <rewrite>
+                    <onepage_login>Mycompany_Customerrecaptcha_Block_Onepage_Login</onepage_login>   
+                    <onepage_billing>Mycompany_Customerrecaptcha_Block_Onepage_Billing</onepage_billing>                   
+                </rewrite>
+            </checkout>
+        </blocks>
+		<helpers>
+            <mycompany_customerrecaptcha>
+                <class>Mycompany_Customerrecaptcha_Helper</class>
+            </mycompany_customerrecaptcha>
+        </helpers>
+        <models>
+            <mycompany_customerrecaptcha>
+                <class>Mycompany_Customerrecaptcha_Model</class>
+            </mycompany_customerrecaptcha>
+        </models>
+    </global>
+
+    <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <mycompany_customerrecaptcha before="Mage_Customer">Mycompany_Customerrecaptcha</mycompany_customerrecaptcha>
+                    </modules>
+                </args>
+            </customer>
+            <checkout>
+                <args>
+                    <modules>
+                        <mycompany_customerrecaptcha before="Mage_Checkout">Mycompany_Customerrecaptcha</mycompany_customerrecaptcha>
+                    </modules>
+                </args>
+            </checkout>
+        </routers>
+        <layout>
+		     <updates>
+				<mycompany_customerrecaptcha>
+					<file>customerrecaptcha.xml</file>				
+				</mycompany_customerrecaptcha>				
+			</updates>
+		</layout>
+    </frontend>
+</config>
