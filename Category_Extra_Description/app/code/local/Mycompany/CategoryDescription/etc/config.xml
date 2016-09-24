@@ -7,14 +7,13 @@
 	</modules>
 	<frontend>
 		<layout>
-            <updates>
-                <mycompany_categorydescription>
-                    <file>CategoryDesc.xml</file>
-                </mycompany_categorydescription>
-            </updates>
-        </layout>
+			<updates>
+				<mycompany_categorydescription>
+					<file>CategoryDesc.xml</file>
+				</mycompany_categorydescription>
+			</updates>
+		</layout>
 	</frontend>
-
 	<global>
 		<resources>
 			<categorydescription_setup>
@@ -27,34 +26,38 @@
 				</connection>
 			</categorydescription_setup>
 		</resources>
+		<helpers>
+			<mycompany_categorydescription>
+				<class>Mycompany_CategoryDescription_Helper</class>
+			</mycompany_categorydescription>
+		</helpers>
 	</global>
-	
 	<adminhtml>
 		<acl>
-	        <resources>
-	            <admin>
-	                <children>
-	                    <system>
-	                        <children>
-	                            <config>
-	                                <children>
-	                                    <mycompany_categorydescription translate="title">
-	                                        <title>Category Extra Description</title>
-	                                    </mycompany_categorydescription>
-	                                </children>
-	                            </config>
-	                        </children>
-	                    </system>
-	                </children>
-	            </admin>
-	        </resources>
-	    </acl>
-    </adminhtml>
-    <default>
-        <mycompany_categorydescription>
-            <general>
-                <enabled>1</enabled>
-            </general>
-        </mycompany_categorydescription>
-    </default>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<mycompany_categorydescription translate="title">
+											<title>Category Extra Description</title>
+										</mycompany_categorydescription>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+	<default>
+		<mycompany_categorydescription>
+			<general>
+				<enabled>1</enabled>
+			</general>
+		</mycompany_categorydescription>
+	</default>
 </config>
