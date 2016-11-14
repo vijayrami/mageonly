@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mycompany_Mycontact extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Mycompany
+ * @package        Mycompany_Mycontact
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+--> 
+<layout>
+    <adminhtml_mycontact_contactinquiry_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>customer/contactinquiry</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="mycompany_mycontact/adminhtml_contactinquiry" name="contactinquiry" />
+
+        </reference>
+    </adminhtml_mycontact_contactinquiry_index>
+    <adminhtml_mycontact_contactinquiry_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="mycompany_mycontact/adminhtml_contactinquiry_grid" name="contactinquiry_grid"/>
+        </block>
+    </adminhtml_mycontact_contactinquiry_grid>
+    <!-- Contactinquiry add/edit action -->
+    <adminhtml_mycontact_contactinquiry_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>mycompany_mycontact/contactinquiry</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="mycompany_mycontact/adminhtml_contactinquiry_edit" name="contactinquiry_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="mycompany_mycontact/adminhtml_contactinquiry_edit_tabs" name="contactinquiry_tabs"></block>
+        </reference>
+    </adminhtml_mycontact_contactinquiry_edit>
+
+</layout>

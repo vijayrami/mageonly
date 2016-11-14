@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Mycompany_CategoryProductlink>
+            <version>0.1.1</version>
+        </Mycompany_CategoryProductlink>
+    </modules>
+ <global>
+        <blocks>
+        	<categoryproductlink>
+        		<class>Mycompany_CategoryProductlink_Block</class>
+  			</categoryproductlink>
+ 			<adminhtml>
+ 				<rewrite>
+ 					<catalog_category_tab_product>Mycompany_CategoryProductlink_Block_Adminhtml_Catalog_Category_Tab_Product</catalog_category_tab_product>
+ 				</rewrite> 			
+ 			</adminhtml>                  	
+        </blocks>   
+        <helpers>
+        	<categoryproductlink>
+        		<class>Mycompany_CategoryProductlink_Helper</class>        		
+        	</categoryproductlink>
+        </helpers> 
+        <resources>
+            <categoryproductlink_setup>
+                <setup>
+                    <module>Mycompany_CategoryProductlink</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </categoryproductlink_setup>
+            <categoryproductlink_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </categoryproductlink_write>
+            <categoryproductlink_read>
+                <connection> 
+                    <use>core_read</use>
+                </connection>
+            </categoryproductlink_read>
+       </resources>          
+  </global>
+</config>
+
+

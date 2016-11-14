@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_contactsave_contactdata_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>customer/contactdata</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="mycompany_contactsave/adminhtml_contactdata" name="contactdata" />
+
+        </reference>
+    </adminhtml_contactsave_contactdata_index>
+    <adminhtml_contactsave_contactdata_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="mycompany_contactsave/adminhtml_contactdata_grid" name="contactdata_grid"/>
+        </block>
+    </adminhtml_contactsave_contactdata_grid>
+    <!-- Contactdata add/edit action -->
+    <adminhtml_contactsave_contactdata_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>mycompany_contactsave/contactdata</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="mycompany_contactsave/adminhtml_contactdata_edit" name="contactdata_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="mycompany_contactsave/adminhtml_contactdata_edit_tabs" name="contactdata_tabs"></block>
+        </reference>
+    </adminhtml_contactsave_contactdata_edit>
+
+</layout>

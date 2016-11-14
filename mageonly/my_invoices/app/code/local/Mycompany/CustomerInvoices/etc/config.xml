@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mycompany_CustomerInvoices>
+            <version>1.0.0</version>
+        </Mycompany_CustomerInvoices>
+    </modules>
+
+    <frontend>
+        <routers>
+            <customerinvoices>
+                <use>standard</use>
+                <args>
+                    <module>Mycompany_CustomerInvoices</module>
+                    <frontName>getinvoices</frontName>
+                </args>
+            </customerinvoices>
+        </routers>
+
+        <layout>
+            <updates>
+                <vasiliib>
+                    <file>mycustomerinvoices.xml</file>
+                </vasiliib>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+        <blocks>
+            <invoices>
+                <class>Mycompany_CustomerInvoices_Block</class>
+            </invoices>
+        </blocks>
+    </global>
+</config>

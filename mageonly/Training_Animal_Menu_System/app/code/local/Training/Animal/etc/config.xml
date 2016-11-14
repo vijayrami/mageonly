@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Training_Animal>
+            <version>1.0.0</version>
+        </Training_Animal>
+    </modules>
+    <global>
+        <helpers>
+            <training_animal>
+                <class>Training_Animal_Helper</class>
+            </training_animal>
+        </helpers>
+        <models>
+            <training_animal>
+                <class>Training_Animal_Model</class>
+            </training_animal>
+        </models>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <training_animal>
+                    <file>training_animal.xml</file>
+                </training_animal>
+            </updates>
+        </layout>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Training_Animal before="Mage_Adminhtml">Training_Animal_Adminhtml</Training_Animal>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

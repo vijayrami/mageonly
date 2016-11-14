@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mycompany_Mycontact extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Mycompany
+ * @package        Mycompany_Mycontact
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <Mycompany_Mycontact>
+            <version>1.0.0</version>
+        </Mycompany_Mycontact>
+    </modules>
+    <global>
+        <resources>
+            <mycompany_mycontact_setup>
+                <setup>
+                    <module>Mycompany_Mycontact</module>
+                    <class>Mycompany_Mycontact_Model_Resource_Setup</class>
+                </setup>
+            </mycompany_mycontact_setup>
+        </resources>
+        <blocks>
+            <mycompany_mycontact>
+                <class>Mycompany_Mycontact_Block</class>
+            </mycompany_mycontact>
+        </blocks>
+        <helpers>
+            <mycompany_mycontact>
+                <class>Mycompany_Mycontact_Helper</class>
+            </mycompany_mycontact>
+        </helpers>
+        <models>
+            <mycompany_mycontact>
+                <class>Mycompany_Mycontact_Model</class>
+                <resourceModel>mycompany_mycontact_resource</resourceModel>
+            </mycompany_mycontact>
+            <mycompany_mycontact_resource>
+                <class>Mycompany_Mycontact_Model_Resource</class>
+                <entities>
+                    <contactinquiry>
+                        <table>mycompany_mycontact_contactinquiry</table>
+                    </contactinquiry>
+                </entities>
+            </mycompany_mycontact_resource>
+        </models>
+        <events>
+        	<!-- for url rewrite -->
+            <controller_front_init_routers>
+                <observers>
+                    <mycompany_mycontact>
+                        <class>Mycompany_Mycontact_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </mycompany_mycontact>
+                </observers>
+            </controller_front_init_routers>
+            <!-- for url rewrite -->
+            <!-- to add default captcha -->
+            <controller_action_predispatch_mycontact_contactinquiry_post>
+                <observers>
+                    <mycompany_mycontact>
+                        <class>mycompany_mycontact/observer</class>
+                        <method>checkContacts</method>
+                    </mycompany_mycontact>
+                </observers>
+            </controller_action_predispatch_mycontact_contactinquiry_post>
+            <!-- to add default captcha -->
+        </events>
+        <template>
+            <email>
+                <requestinquiry_email_success_email_template translate="label" module="mycompany_mycontact">
+                    <label>Success Inquiry Template</label>
+                    <file>mycompany/success_contact.html</file>
+                    <type>html</type>
+                </requestinquiry_email_success_email_template>
+                <requestinquiry_email_confirm_email_template translate="label" module="mycompany_mycontact">
+                    <label>Request Confirm Template</label>
+                    <file>mycompany/request_contact.html</file>
+                    <type>html</type>
+                </requestinquiry_email_confirm_email_template>
+            </email>
+        </template>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <mycompany_mycontact>
+                    <file>mycompany_mycontact.xml</file>
+                </mycompany_mycontact>
+            </updates>
+        </layout>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Mycompany_Mycontact before="Mage_Adminhtml">Mycompany_Mycontact_Adminhtml</Mycompany_Mycontact>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <events>
+            <page_block_html_topmenu_gethtml_before>
+                <observers>
+                    <mycompany_mycontact>
+                        <class>mycompany_mycontact/observer</class>
+                        <method>addItemsToTopmenuItems</method>
+                    </mycompany_mycontact>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
+        </events>
+
+        <routers>
+            <mycompany_mycontact>
+                <use>standard</use>
+                <args>
+                    <module>Mycompany_Mycontact</module>
+                    <frontName>contact-inquiry</frontName>
+                </args>
+            </mycompany_mycontact>
+        </routers>
+        <layout>
+            <updates>
+                <mycompany_mycontact>
+                    <file>mycompany_mycontact.xml</file>
+                </mycompany_mycontact>
+            </updates>
+        </layout>
+    </frontend>
+    <default>
+        <mycompany_mycontact>
+            <contactinquiry>
+                <breadcrumbs>1</breadcrumbs>
+                <contactinquiry_custom_field_one>0</contactinquiry_custom_field_one>
+                <contactinquiry_custom_field_two>0</contactinquiry_custom_field_two>
+            </contactinquiry>
+        </mycompany_mycontact>
+        <contactsubscription>
+            	<confirm_email_template>1</confirm_email_template>
+            	<success_email_template>2</success_email_template>
+            	<success_email_identity>support</success_email_identity>
+            	<confirm_email_identity>sales</confirm_email_identity>
+        </contactsubscription>
+        <!-- to add default captcha -->
+        <captcha>
+            <frontend>
+                <areas>
+                    <mycompany_mycontact><!-- take frontend router node -->
+                        <label>Contacts Inquiry Page</label>
+                    </mycompany_mycontact>
+                </areas>
+            </frontend>
+        </captcha>
+        <customer>
+            <captcha>
+                <always_for>
+                    <mycompany_mycontact>1</mycompany_mycontact>
+                </always_for>
+            </captcha>
+        </customer>
+        <!-- to add default captcha -->
+    </default>
+</config>

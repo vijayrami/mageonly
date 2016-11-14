@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<catalog_category_default>
+		<reference name="root">
+			<action method="addBodyClass">
+				<className helper="mycompany_categorydescription/getCategoryClass" />
+			</action>
+		</reference>
+		<reference name="content">
+			<block name="category_extra_desc" type="catalog/category_view" after="category.products" template="catalog/category/extra-desc.phtml" />
+		</reference>
+	</catalog_category_default>
+	<catalog_category_layered>
+		<reference name="root">
+			<action method="addBodyClass">
+				<className helper="mycompany_categorydescription/getCategoryClass" />
+			</action>
+		</reference>
+		<reference name="content">
+			<block name="category_extra_desc" type="catalog/category_view" after="category.products" template="catalog/category/extra-desc.phtml" />
+		</reference>
+	</catalog_category_layered>
+</layout>

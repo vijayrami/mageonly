@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <training_animal translate="title" module="training_animal">
+                                        <title>Animal</title>
+                                    </training_animal>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <training_animal translate="title" module="training_animal">
+                        <title>Manage Animals</title>
+                        <children>
+                            <stall translate="title" module="training_animal">
+                                <title>Stall</title>
+                                <sort_order>0</sort_order>
+                            </stall>
+                        </children>
+                    </training_animal>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+    	<catalog>
+      		<children>
+		        <training_animal translate="title" module="training_animal">
+		            <title>Manage Animals</title>
+		            <sort_order>25</sort_order>
+		            <children>
+		                <stall translate="title" module="training_animal">
+		                    <title>Stall</title>
+		                    <action>adminhtml/animal/index</action>
+		                    <sort_order>0</sort_order>
+		                </stall>
+		            </children>
+		        </training_animal>
+		    </children>
+		</catalog>
+    </menu>
+</config>

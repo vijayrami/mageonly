@@ -1,0 +1,126 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Deliveryschedule
+ * @version     0.1.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ * */
+?>
+<?php $_order = $this->getOrder() ?>
+<?php if ($_order): ?>
+<table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #EAEAEA;">
+    <thead>
+        <tr>
+            <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Item') ?></th>
+            <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Sku') ?></th>
+            <th align="center" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Qty') ?></th>
+            <th align="right" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><?php echo $this->__('Subtotal') ?></th>
+        </tr>
+    </thead>
+
+    <?php $i=0; foreach ($_order->getAllItems() as $_item): ?>
+    <?php 
+    if($_item->getParentItem())   {
+        continue; 
+    }
+     else  {
+          $i++; 
+    }?>
+    <tbody<?php echo $i%2 ? ' bgcolor="#F6F6F6"' : '' ?>>
+        <?php echo $this->getItemHtml($_item) ?>
+    </tbody>
+    <?php endforeach; ?>
+
+    <tbody>
+        <?php echo $this->getChildHtml('order_totals') ?>
+    </tbody>
+</table>
+<?php if ($this->helper('giftmessage/message')->isMessagesAvailable('order', $_order, $_order->getStore()) && $_order->getGiftMessageId()): ?>
+    <?php $_giftMessage = $this->helper('giftmessage/message')->getGiftMessage($_order->getGiftMessageId()); ?>
+    <?php if ($_giftMessage): ?>
+<br />
+<table cellspacing="0" cellpadding="0" border="0" width="100%" style="border:1px solid #EAEAEA;">
+    <thead>
+        <tr>
+            <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><strong><?php echo $this->__('Gift Message for this Order') ?></strong></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr>
+            <td colspan="4" align="left" style="padding:3px 9px">
+            <strong><?php echo $this->__('From:'); ?></strong> <?php echo $this->escapeHtml($_giftMessage->getSender()) ?>
+            <br /><strong><?php echo $this->__('To:'); ?></strong> <?php echo $this->escapeHtml($_giftMessage->getRecipient()) ?>
+            <br /><strong><?php echo $this->__('Message:'); ?></strong><br /> <?php echo $this->escapeHtml($_giftMessage->getMessage()) ?>
+            </td>
+        </tr>
+    </tbody>
+</table>
+    <?php endif; ?>
+<?php endif; ?>
+<?php endif; ?>
+<br />
+<?php  if (Mage::getStoreConfig('deliveryschedule/general/delivery_schedule_enabled')==1){ 
+    $getDeliveryItems = $_order->getShippingDeliverySchedule();
+    if($getDeliveryItems && $getDeliveryItems != "") { 
+ ?>
+<table cellspacing="0" cellpadding="0" border="0" width="100%" style="border:1px solid #EAEAEA;">
+    <thead>
+        <tr>
+            <th align="left" bgcolor="#EAEAEA" style="font-size:13px; padding:3px 9px"><strong><?php echo $this->__('Delivery Schedule Information'); ?></strong></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="4" align="left" style="padding:3px 9px">
+            <?php 
+            $deliveryDate = $_order->getShippingDeliveryDate();
+            $deliveryType = $_order->getShippingDeliverySchedule();
+            $deliveryTime = $_order->getShippingDeliveryTime();
+            echo "<strong style='display:block;font-weight:bold;'>".$this->__('Shipping Delivery Schedule')." :- </strong>".$_order->getShippingDeliverySchedule();
+            if($deliveryDate != "")  { 
+            echo "</br><strong style='display:block;font-weight:bold;'>".$this->__('Shipping Delivery Date')." :- </strong></br>".date("M d Y",strtotime($deliveryDate))." ".$deliveryTime;
+            }
+            else  { 
+                echo "N/A";
+            } ?>
+            <br /><strong style='display:block;font-weight:bold;'><?php echo $this->__('Comments : '); ?></strong> 
+            <?php 
+            if (Mage::getStoreConfig ( 'deliveryschedule/general/delivery_comment_enabled' ) == 1) {
+            $comments = $_order->getShippingDeliveryComments(); 
+            if($comments !="")   {
+                echo $comments;
+                }
+                else   {
+                echo "N/A";
+                } 
+                } ?>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<?php } 
+} ?>

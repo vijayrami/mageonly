@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Mycompany_CategoryProductlink>
+            <version>0.1.0</version>
+        </Mycompany_CategoryProductlink>
+    </modules>
+ <global>
+        <blocks>
+        	<categoryproductlink>
+        		<class>Mycompany_CategoryProductlink_Block</class>
+  			</categoryproductlink>
+ 			<adminhtml>
+ 				<rewrite>
+ 					<catalog_category_tab_product>Mycompany_CategoryProductlink_Block_Adminhtml_Catalog_Category_Tab_Product</catalog_category_tab_product>
+ 				</rewrite> 			
+ 			</adminhtml>                  	
+        </blocks>      
+  </global>
+</config>
+
+
