@@ -1,0 +1,21 @@
+to add new tab in frontend:
+
+open app/design/frontend/yourtheme/default/layout/catalog.xml
+
+Find <block type="catalog/product_view_attributes" name="product.attributes"
+
+after that add below code:
+
+<block type="catalog/product_view" name="product.delivery" as="delivery" template="catalog/product/view/delivery.phtml">
+  <action method="addToParentGroup"><group>detailed_info</group></action>
+  <action method="setTitle" translate="value"><value>Delivery</value></action>
+</block>
+<block type="catalog/product_view" name="product.returns" as="returns" template="catalog/product/view/returns.phtml">
+    <action method="addToParentGroup"><group>detailed_info</group></action>
+    <action method="setTitle" translate="value"><value>Returns</value></action>
+</block>
+
+Create file delivery.phtml in app/design/frontend/yourtheme/default/template/catalog/product/view/delivery.phtml
+Create file returns.phtml in app/design/frontend/yourtheme/default/template/catalog/product/view/returns.phtml
+
+         

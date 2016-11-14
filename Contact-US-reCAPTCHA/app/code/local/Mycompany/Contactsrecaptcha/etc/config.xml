@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Mycompany_Contactsrecaptcha>
+            <version>1.0.0</version>            
+        </Mycompany_Contactsrecaptcha>
+    </modules>
+
+    <global>        
+        <models>
+            <mycompany_contactsrecaptcha>
+                <class>Mycompany_Contactsrecaptcha_Model</class>
+            </mycompany_contactsrecaptcha>
+        </models>
+    </global>
+    <frontend>
+        <routers>
+            <contacts>
+                <args>
+                    <modules>
+                        <mycompany_contactsrecaptcha before="Mage_Customer">Mycompany_Contactsrecaptcha</mycompany_contactsrecaptcha>
+                    </modules>
+                </args>
+            </contacts>
+        </routers>
+        <layout>
+            <updates>
+                <mycompany_contactsrecaptcha module="Mycompany_Contactsrecaptcha">
+                    <file>contactsrecaptcha.xml</file>
+                </mycompany_contactsrecaptcha>
+            </updates>
+        </layout>
+    </frontend>
+</config>

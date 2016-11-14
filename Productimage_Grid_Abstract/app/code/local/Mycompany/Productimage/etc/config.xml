@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Mycompany_Productimage>
+            <version>0.0.1</version>
+        </Mycompany_Productimage>
+    </modules>
+    <global>
+        <blocks>
+            <productimage>
+                <class>Mycompany_Productimage_Block</class>
+            </productimage>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_grid>Mycompany_Productimage_Block_Adminhtml_Product_Grid</catalog_product_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <helpers>
+            <productimage>
+                <class>Mycompany_Productimage_Helper</class>
+            </productimage>
+        </helpers>
+    </global>
+</config>

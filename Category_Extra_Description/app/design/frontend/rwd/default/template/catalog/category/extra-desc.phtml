@@ -1,0 +1,10 @@
+<?php
+if (Mage::getStoreConfig('mycompany_categorydescription/general/enabled')):
+	$_category  = $this->getCurrentCategory();
+	if( $_category->getExtraDescription() ):
+?>
+	<div class="category_description description extra_description">
+		<?php echo Mage::helper('cms')->getPageTemplateProcessor()->filter($_category->getExtraDescription()); ?>
+	</div>
+	<?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Training_Animal extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       Training
+ * @package        Training_Animal
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+--> 
+<layout>
+    <adminhtml_animal_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>catalog/training</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="training_animal/adminhtml_animal" name="animal" />
+        </reference>
+    </adminhtml_animal_index>
+    <adminhtml_animal_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="training_animal/adminhtml_animal_grid" name="animal_grid"/>
+        </block>
+    </adminhtml_animal_grid>
+    <!-- Animal add/edit action -->
+    <adminhtml_animal_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>catalog/training</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="training_animal/adminhtml_animal_edit" name="animal_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="training_animal/adminhtml_animal_edit_tabs" name="animal_tabs"></block>
+        </reference>
+    </adminhtml_animal_edit>
+
+</layout>

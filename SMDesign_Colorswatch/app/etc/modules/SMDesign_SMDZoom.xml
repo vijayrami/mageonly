@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SMDesign_SMDZoom>
+            <active>true</active>
+            <codePool>community</codePool>
+        </SMDesign_SMDZoom>
+    </modules>
+</config>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Mycompany_Productreviewrecaptcha>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+                <Mage_Review/>
+            </depends>
+		</Mycompany_Productreviewrecaptcha>
+	</modules>
+</config>

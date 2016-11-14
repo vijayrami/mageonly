@@ -1,0 +1,138 @@
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Deliveryschedule
+ * @version     0.1.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ * */
+.checkout-shipping-schedule{border-top: 1px solid #D1D1D1; margin-top: 12px; padding-top: 10px;}
+#checkout-shipping-method-load .sp-methods dd .checkout-shipping-schedule label{background:inherit;padding:5px 0;}
+.checkout-shipping-schedule #shipping_delivery_date_display{margin:0 0 10px;width: 250px;display: inline-block;cursor: no-drop;}
+.checkout-shipping-schedule #shipping_delivery_date_trig {display: inline-block;cursor:pointer;vertical-align:middle;margin:0 6px;}
+.checkout-shipping-schedule #link_reset {display: inline-block;vertical-align:middle;margin-left:5px;}
+.shipping-delivery-select{max-width: 250px!important;height: 30px;border: 1px solid silver;border-radius: 2px;}
+.user-comment-text {font-size:10px;}
+/* Calendar styles*/
+.time-slot-label{clear:both;display:block!important; background: inherit !important;}
+.delivery a{text-decoration:none;color:#281D0B;}
+.delivery{line-height:1.3em;margin:0;padding:0;font-family:arial;font-size:11px;color:#000;background:#fff;
+border:1px solid #a8a8a8;width:695px!important;text-align:left;}
+.delivery_schedule_title{padding:7px 0px;}
+.delivery_schedule_title h6{text-align:right;padding:0px 10px;margin-bottom:1px;}
+.delivery_schedule_title h6 a:hover{text-decoration:underline;}
+.delivery_time{float:left;width:50%;}.delivery_schedule_dates{float:left;width:50%;}
+.clear{clear:both;overflow:hidden;}
+.delivery_time h6{font-size:11px;padding:5px;border-bottom:1px solid #ccc;margin:0;}
+.delivery_time p{font-size:11px;padding:5px;color:#5a1f19;margin:0;}
+.delivery_schedule_dates_top{padding:0px;border-bottom:1px solid #ccc;}
+.delivery_schedule_dates_top ul{margin:0;padding:0;width:100% !important;;}
+.delivery_schedule_dates_top ul li{list-style-image:none;list-style-position:outside;list-style-type:none;display:block;float:left;text-align:center;}
+.delivery_schedule_dates_top ul li{display:block;padding:5px 10px;width:50px !important;}
+.delivery_schedule_dates_top ul li a{font-weight:bold;}
+.delivery_schedule_dates_top ul li a:hover{border:1px solid #acce00;padding:4px 3px;}
+.delivery_schedule_dates_top ul li span{display:block;color:#F18200;}
+.select_one{border-bottom:none;}
+.select_one ul li{padding:0px;width:auto;}
+.select_one ul li a{display:block;padding:5px 10px;width:50px !important;;}
+.select_one ul li a:hover{border:1px solid #a0c51f;padding:4px 9px;}
+.delivery .oddrow{background-color:#eaeaea;}
+.select_one ul li.disablerow{background:url(../images/disable.png) no-repeat top center;padding:0px;display:block;padding:5px 10px;
+width:50px;}
+.select_one ul li .ddate_day_active,.select_one ul li a.ddate_day_active:hover{background:#3399cc;border-style:inset;border-width:1px;
+padding:4px 9px;color:#FFFFFF;}
+.slideshow-area-class,.slideshow-scroller-class{position:relative;overflow:hidden;width:100%;}
+.slideshow-area-class{}.slideshow-holder-class{}
+.daysshow-previous-class,.daysshow-next-class{display:none;cursor:pointer;cursor:hand;color:#281d0b;font-size:11px;}
+.daysshow-previous-class{background:url(../images/slide_previous.gif) no-repeat left;padding-left:25px;}
+.daysshow-next-class{display:inline;padding-right:25px;padding-left:15px;background:url(../images/slide_next.gif) no-repeat right;}
+.slideshow-content{float:left;width:350px;}
+.dtimepicker{padding-top:13px;}
+.deliverypicker{width:200px;}
+.loading_slot{width:322px;}
+.ddate-please-wait-slot{float:right;}
+#select_dtimepicker{float:right;width:219px;}
+.first_column_header{height:40px;}
+
+/* checkout shipping method table */
+
+.delivery-schedule label{ padding: 6px 10px 6px 10px !important; font-weight:bold;}
+.delivery-schedule select{ margin: 10px 0; }
+.delivery-schedule .delivery-schedule-head li{ background: #3399cc; color:#fff; margin:0; }
+.delivery-schedule .delivery-schedule-head li span{ color: #FFED00; }
+.delivery-schedule .delivery_time h6{ border:0; position: relative; background: #3399cc; color:#fff; height: 38px; line-height: 28px; }
+.delivery-schedule .delivery_schedule_dates_top{ border: 0; }
+.delivery-schedule .delivery_schedule_title {    padding: 7px 0px;    clear: both;    width: 100%;}
+.delivery-schedule .delivery_schedule_time{  clear: both;    width: 100%; }
+.delivery-schedule .delivery_time p{ padding:10px; }
+.delivery-schedule .select_one ul li.disablerow{ background: rgba(255, 5, 5, 0.56); cursor: not-allowed; border: 1px #fff solid !important;border-top: none !important; }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+	.delivery-schedule .delivery{ width: 100% !important; }
+	.delivery-schedule .daysshow-next-class{ padding-left: 5px; padding-right: 21px; }
+	.delivery-schedule .daysshow-previous-class{     padding-left: 20px; }
+	.delivery-schedule .delivery_time h6{ line-height: normal; height: 39px; }
+	.delivery-schedule .delivery_schedule_dates{ width: 55%; overflow-x: scroll;}
+	.delivery-schedule #slideshow-area{ width:350px; }
+	.delivery-schedule .delivery_time{ width:45%; }
+	.delivery-schedule .delivery-schedule-head li {padding: 5.5px 10px !important;}
+}
+@media only screen and (min-width: 360px) and (max-width: 627px) {
+	.delivery-schedule .delivery_time h6 {height: 39px;} .shipment-methods {width:89%;}
+}
+@media only screen and (min-width: 360px) and (max-width: 736px) {.delivery-schedule .delivery-schedule-head li { padding: 5.5px 10px !important;}}
+@media only screen and (min-width: 480px) and (max-width: 1024px){.delivery-schedule .delivery_time h6 {height: 38px !important;}}
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+	.delivery-schedule .delivery{ width: 100% !important; }
+	.delivery-schedule .daysshow-next-class{ padding-left: 5px; padding-right: 21px; }
+	.delivery-schedule .daysshow-previous-class{     padding-left: 20px; }
+	.delivery-schedule .delivery_time h6{ line-height: normal; height: 39px !important; }
+	.delivery-schedule .delivery_schedule_dates{ width: 49%; overflow-x: scroll;}
+	.delivery-schedule #slideshow-area{ width:350px; }
+	.delivery-schedule .delivery_time{ width:51%; }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation : portrait){
+	.delivery-schedule .delivery{ width: 100% !important; }
+	.delivery-schedule .daysshow-next-class{ padding-left: 5px; padding-right: 21px; }
+	.delivery-schedule .daysshow-previous-class{     padding-left: 20px; }
+	.delivery-schedule .delivery_time h6{ line-height: normal; height: 38px; }
+	.delivery-schedule .delivery_schedule_dates{ width: 51%; overflow-x: scroll;}
+	.delivery-schedule #slideshow-area{ width:350px; }
+	.delivery-schedule .delivery_time{ width:49%; }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation : landscape){
+	.delivery-schedule .delivery{ width: 100% !important; }
+	.delivery-schedule .daysshow-next-class{ padding-left: 5px; padding-right: 21px; }
+	.delivery-schedule .daysshow-previous-class{     padding-left: 20px; }
+	.delivery-schedule .delivery_time h6{ line-height: normal; height: 38px; }
+	.delivery-schedule .delivery_schedule_dates{ width: 47%; overflow-x: scroll;}
+	.delivery-schedule #slideshow-area{ width:350px; }
+	.delivery-schedule .delivery_time{ width:53%; }
+}
+.delivery{width:100%!important;}
+.slideshow-area-class {width: 349px;}
+.delivery_schedule_dates {overflow-x: auto;}
+.delivery-schedule .delivery_time h6{line-height: 16px !important;}
+.delivery-schedule .delivery_time p{padding: 6px !important;}
+ul.checkout-shipping-schedule li #shipping_arrival_comments { max-height: 100px !important;}
+.delivery-schedule .validation-advice{font-weight:normal !important;}

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mycompany_Contactsave>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Core />
+             </depends>
+        </Mycompany_Contactsave>
+    </modules>
+</config>

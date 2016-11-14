@@ -1,0 +1,120 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Deliveryschedule
+ * @version     0.1.0
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2015 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ *
+ * */
+?>
+
+<?php
+/**
+ * Calendar localization script. Should be put into page header.
+ *
+ *
+ */
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+ var currentSlide=1;
+ var contentSlides="";
+ var totalSlides = 4;
+ jQuery(document).ready(function(){
+    jQuery("#daysshow-previous").click(showPreviousSlide);
+    jQuery("#daysshow-next").click(showNextSlide);
+    var totalWidth=0;totalSlides=4;
+    var current_slot_slide=jQuery("#current_slot_slide").val();
+    if(current_slot_slide != ""){
+        contentSlides=jQuery(".contentslider"+current_slot_slide);
+        }
+   /* contentSlides.each(function(i){
+       totalWidth+=this.clientWidth;totalSlides++;});*/
+    jQuery(".slideshow-holder-class").width(500*totalSlides);
+    jQuery(".slideshow-scroller-class").attr({scrollLeft:0});
+   
+    updateButtons();
+    });
+ function showPreviousSlide()
+    {
+       currentSlide--;updateContentHolder();updateButtons();
+    }
+    function showNextSlide()
+    {
+        currentSlide++;updateContentHolder();updateButtons();}
+    function updateContentHolder()
+    {
+        var current_slot_slide=jQuery("#current_slot_slide").val();
+        if(current_slot_slide != ""){
+            contentSlides=jQuery(".contentslider"+current_slot_slide);
+            }
+        var scrollAmount=0;
+        contentSlides.each(function(i){
+            if(currentSlide- 1>i){
+                scrollAmount+=this.clientWidth;}});
+        jQuery(".slideshow-scroller-class").animate({scrollLeft:scrollAmount},500);}
+    function updateButtons()
+    {
+        if(currentSlide<totalSlides){
+            jQuery("#daysshow-next").show();
+            }else{
+                jQuery("#daysshow-next").hide();
+                }
+    if(currentSlide>1){
+        jQuery("#daysshow-previous").show();
+        }else{
+            jQuery("#daysshow-previous").hide();
+            }
+    }
+    if(document.getElementById("min_date")!=null){alert("ente");
+    var a=0;jQuery("#ddate-trigger-picker").click(function(){
+        if(a==0){document.getElementById("cont").style.display="block";
+        a=1;}else{document.getElementById("cont").style.display="none";a=0;}});
+        var min_date=parseInt(document.getElementById("min_date").value);
+        var max_date=parseInt(document.getElementById("max_date").value);
+        var d_saturday=parseInt(document.getElementById("d_saturday").value);
+        var d_sunday=parseInt(document.getElementById("d_sunday").value);
+        var special_day=document.getElementById("special_day").value;special_day=special_day.split(';');
+        var DISABLE_DATES=new Array();var j=0;for(i=0;i<special_day.length;i++){if(special_day[i]!=""){
+            var spt=special_day[i].split('-');DISABLE_DATES[j]=spt[0]+ spt[1]+ spt[2]+":true";j++;}}
+    var LEFT_CAL=Calendar.setup({
+        cont:"cont",
+        weekNumbers:true,
+        selectionType:Calendar.SEL_MULTIPLE,
+        showTime:12,
+        min:min_date,max:max_date,
+        weekNumbers:true,
+        disabled:function(date){
+            if(((date.getDay()==6)&&(d_saturday=="0"))||((date.getDay()==0)&&(d_sunday=="0"))){
+                return true;}
+            else{
+                date=Calendar.dateToInt(date);return date in DISABLE_DATES;}}});
+    LEFT_CAL.addEventListener("onSelect",function(){var ta=document.getElementById("delivery_date");
+    ta.value=this.selection.print("%Y-%m-%d %p").join("\n");
+    document.getElementById("shipping_delivery_date").value=this.selection.print("%Y-%m-%d");
+    document.getElementById("shipping_delivery_time").value=this.selection.print("%p");});
+    }
+//]]>
+</script>

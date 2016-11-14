@@ -1,0 +1,68 @@
+<?php
+$pincode_required  = Mage::getStoreConfig('mycompany_mycontact/contactinquiry/contactinquiry_custom_field_one',Mage::app()->getStore());
+$city_required = Mage::getStoreConfig('mycompany_mycontact/contactinquiry/contactinquiry_custom_field_two',Mage::app()->getStore());
+
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="newlocation">
+<div class="page-title contactinquiry-title">
+    <h1><?php echo Mage::helper('mycompany_mycontact')->__('Contact Inquiry') ?></h1>
+</div>
+<form action="<?php echo $this->getFormAction(); ?>" id="inquiryForm" method="post">
+<div class="fieldset" style="width:100%">
+	<p class="required"><?php echo Mage::helper('mycompany_mycontact')->__('* Required Fields') ?></p>
+    <ul class="form-list" style="list-style: none;margin: 0;padding: 0;">
+        <li class="fields">
+            <div class="field"> 
+            <label for="name" class="required"><em>*</em><?php echo Mage::helper('mycompany_mycontact')->__('Name') ?></label>
+            <div class="input-box">
+                <input name="name" id="name" title="<?php echo $this->__('Name') ?>" value="" class="input-text inBx required-entry validate-alpha" type="text" />
+            </div>
+            </div>
+            <div class="field">
+             <label for="email" class="required"><em>*</em><?php echo Mage::helper('mycompany_mycontact')->__('Email') ?></label>
+             <div class="input-box">
+                <input name="email" id="email" title="<?php echo $this->__('Email') ?>" value="<?php echo $this->escapeHtml($this->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+             </div>
+             </div>
+         </li>
+         
+         <li class="fields">
+            <div class="field">
+             <label for="telephone" class="required"><em>*</em><?php echo Mage::helper('mycompany_mycontact')->__('Mobile Phone') ?></label>
+             <div class="input-box">
+                <input name="mobile" id="mobile" title="<?php echo $this->__('Mobile Number') ?>" value="" class="input-text required-entry validate-phoneLax" type="text" />
+             </div>
+             </div>
+            <div class="field"> 
+            <label for="city" class="<?php if($city_required==1){ echo "required";}?>"><?php if($city_required==1){ echo "<em>*</em>";}?><?php echo Mage::helper('mycompany_mycontact')->__('City') ?></label>
+            <div class="input-box">
+                <input name="city" id="city" title="<?php echo $this->__('city') ?>" value="" class="input-text <?php if($city_required==1){ echo 'required-entry';}?>" type="text" />
+            </div>
+            </div>
+            <div class="field">
+             <label for="pincode" class="<?php if($pincode_required==1){ echo "required";}?>"><?php if($pincode_required==1){ echo "<em>*</em>";}?><?php echo Mage::helper('mycompany_mycontact')->__('Pincode') ?></label>
+             <div class="input-box">
+                <input name="pincode" id="pincode" title="<?php echo $this->__('Pincode') ?>" value="" class="input-text <?php if($pincode_required==1){ echo 'required-entry';}?>" type="text" />
+             </div>
+             </div>
+             <?php echo $this->getChildHtml('form.additional.info'); ?>
+         </li>         
+     </ul>
+     
+ </div>
+	 <div class="buttons-set" style="margin-top:20px;"> 
+	 	<input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+	 	<button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo Mage::helper('mycompany_mycontact')->__('Submit') ?></span></span></button>
+	 </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('inquiryForm', true);
+	(function($) {
+			$(".newlocation input").blur();
+			window.scrollTo(0,0);
+        })(jQuery);
+//]]>
+</script>
+</div>

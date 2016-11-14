@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Mycompany_Productreviewrecaptcha>
+            <version>1.0.0</version>
+        </Mycompany_Productreviewrecaptcha>
+    </modules>
+
+    <global>
+        <blocks>
+            <review>
+                <rewrite>
+                    <form>Mycompany_Productreviewrecaptcha_Block_Form</form>
+                </rewrite>
+            </review>
+        </blocks>
+
+        <models>
+            <mycompany_productreviewrecaptcha>
+                <class>Mycompany_Productreviewrecaptcha_Model</class>
+            </mycompany_productreviewrecaptcha>
+        </models>
+    </global>
+
+    <frontend>
+        <routers>
+            <review>
+                <args>
+                    <modules>
+                        <mycompany_productreviewrecaptcha before="Mage_Review">Mycompany_Productreviewrecaptcha</mycompany_productreviewrecaptcha>
+                    </modules>
+                </args>
+            </review>
+        </routers>
+        <translate><!-- for translation at frontend -->
+            <modules>
+                <Mycompany_Productreviewrecaptcha>
+                    <files>
+                        <default>Mycompany_Productreviewrecaptcha.csv</default>
+                    </files>
+                </Mycompany_Productreviewrecaptcha>
+            </modules>
+        </translate>
+    </frontend>
+
+    <adminhtml>
+        <translate><!-- for translation at backend -->
+            <modules>
+                <Mycompany_Productreviewrecaptcha>
+                    <files>
+                        <default>Mycompany_Productreviewrecaptcha.csv</default>
+                    </files>
+                </Mycompany_Productreviewrecaptcha>
+            </modules>
+        </translate>
+    </adminhtml>
+</config>
