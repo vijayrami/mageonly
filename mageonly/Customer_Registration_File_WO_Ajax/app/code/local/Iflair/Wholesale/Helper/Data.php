@@ -1,5 +1,0 @@
-<?php
-class Iflair_Wholesale_Helper_Data extends Mage_Core_Helper_Abstract
-{
-}
-	 
